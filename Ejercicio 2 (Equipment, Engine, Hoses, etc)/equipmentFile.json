@@ -1,0 +1,37 @@
+[
+    {
+        "id": "001",
+        "description": "Motor",
+        "dateManufacture": "2023-03-16T20:23:22.837Z",
+        "dateInstallation": "2023-03-16T20:23:22.837Z",
+        "pump": {
+            "id": "0002",
+            "inletFlow": 100,
+            "outpuFlow": 200,
+            "manufacturer": "ARG Hoses Inc"
+        },
+        "engine": {
+            "id": "0004",
+            "powerHP": 20,
+            "efficiency": "Good",
+            "manufacturer": "ARG Motors Inc.",
+            "electric": {
+                "id": "0001",
+                "voltage": 200,
+                "consumptionKwH": 100,
+                "isLowConsumption": true
+            },
+            "fuel": {
+                "id": "0003",
+                "cylinders": 4,
+                "fuelType": 1
+            }
+        },
+        "hoses": {
+            "id": "0005",
+            "elements": 4,
+            "size": 12,
+            "threadMaterial": "Plastic"
+        }
+    }
+]
