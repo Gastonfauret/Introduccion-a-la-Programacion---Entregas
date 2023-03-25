@@ -4,8 +4,7 @@ es un deporte. Con enum generaremos un listado de deportes:
 futbol, basket, zumba, voley, natacion, gym.*/
 
 export enum Deporte {
-    futbol, basket, zumba, voley, natacion, gym
-};
+    futbol, basket, zumba, voley, natacion, gym};
 
 import MiembroClub from "./AbstractMiembroClub";
 

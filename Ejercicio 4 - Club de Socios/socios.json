@@ -1,0 +1,92 @@
+[
+  {
+    "nombre": "Pepe",
+    "apellido": "Gonzalez",
+    "fechaNacimiento": "05/01/1950",
+    "documento": "11087456",
+    "telefono": "100",
+    "miembroDesde": "3/25/2023",
+    "deporte": 0
+  },
+  {
+    "nombre": "Paquito",
+    "apellido": "Garcia",
+    "fechaNacimiento": "09/02/1967",
+    "documento": "17098345",
+    "telefono": "121",
+    "miembroDesde": "3/25/2023",
+    "deporte": 1
+  },
+  {
+    "nombre": "Pedro",
+    "apellido": "Fernandez",
+    "fechaNacimiento": "12/03/1974",
+    "documento": "20234876",
+    "telefono": "234",
+    "miembroDesde": "3/25/2023",
+    "deporte": 2
+  },
+  {
+    "nombre": "Juan",
+    "apellido": "Benitez",
+    "fechaNacimiento": "19/04/1982",
+    "documento": "30257634",
+    "telefono": "145",
+    "miembroDesde": "3/25/2023",
+    "deporte": 4
+  },
+  {
+    "nombre": "Maria",
+    "apellido": "Delafuente",
+    "fechaNacimiento": "20/05/1986",
+    "documento": "32067457",
+    "telefono": "678",
+    "miembroDesde": "3/25/2023",
+    "deporte": 4
+  },
+  {
+    "nombre": "Claudia",
+    "apellido": "Rodriguez",
+    "fechaNacimiento": "23/06/1987",
+    "documento": "36023129",
+    "telefono": "456",
+    "miembroDesde": "3/25/2023",
+    "deporte": 5
+  },
+  {
+    "nombre": "Marta",
+    "apellido": "Lopez",
+    "fechaNacimiento": "29/07/1991",
+    "documento": "37379082",
+    "telefono": "260",
+    "miembroDesde": "3/25/2023",
+    "deporte": 0
+  },
+  {
+    "nombre": "Martina",
+    "apellido": "Gomez",
+    "fechaNacimiento": "01/09/1996",
+    "documento": "39076246",
+    "telefono": "098",
+    "miembroDesde": "3/25/2023",
+    "deporte": 3
+  },
+  {
+    "nombre": "Martin",
+    "apellido": "Diaz",
+    "fechaNacimiento": "30/10/2000",
+    "documento": "41570246",
+    "telefono": "309",
+    "miembroDesde": "3/25/2023",
+    "deporte": 4
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "Sanchez",
+    "fechaNacimiento": "07/11/1990",
+    "documento": "35203324",
+    "telefono": "567",
+    "miembroDesde": "3/25/2023",
+    "deporte": 0
+  }
+]

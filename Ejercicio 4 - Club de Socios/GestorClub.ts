@@ -19,7 +19,7 @@ export default class GestorClub {
     agregarSocio(){
         let nombre = readlineSync.question('Escriba Nombre del Socio: ');
         let apellido = readlineSync.question('Escriba Apellido del Socio: ');
-        let fechaNacimiento = readlineSync.question('Escriba fecha de Nacimiento formato YYYY/MM/DD: ');
+        let fechaNacimiento = readlineSync.question('Escriba fecha de Nacimiento formato DD/MM/YYYY: ');
         let documento = readlineSync.question('Escriba Documento del Socio: ');
         let telefono = readlineSync.question('Escriba telefono del Socio: ');
 
@@ -32,27 +32,31 @@ export default class GestorClub {
         fs.writeFileSync('./socios.json', JSON.stringify(socios, null, 2)); // Pasa los datos a Formato JSON. Parametro (archivo, reemplazo de archivo, espacios en el archivo).
     }
 
-    buscarSocioXNombre(nombre: string) {
-        const nombreEncontrado = this.data().find((socio: {nombre: string}) => socio.nombre === nombre);
-        console.log(`El nombre ${nombre} se ecuentra en la base de datos. ${nombreEncontrado}`);
+    buscarSocioXNombre() {
+        let nombre: string  = readlineSync.question('Escriba Nombre del Socio que desea buscar: ');
+        const nombreEncontrado: string = this.data().find((socio: {nombre: string}) => socio.nombre === nombre);
+        console.log(`El nombre '${nombre}' se encuentra en la base de datos.`);
         return nombreEncontrado;
     }
 
-    buscarSocioXApellido(apellido: string) {
-        const apellidoEncontrado = this.data().find((socio: {apellido: string}) => socio.apellido === apellido);
-        console.log(`El nombre ${apellido} se ecuentra en la base de datos. ${apellidoEncontrado}`);
+    buscarSocioXApellido() {
+        let apellido: string  = readlineSync.question('Escriba el apellido del Socio que desea buscar: ');
+        const apellidoEncontrado: string = this.data().find((socio: {apellido: string}) => socio.apellido === apellido);
+        console.log(`El apellido '${apellido}' se encuentra en la base de datos.`);
         return apellidoEncontrado;
     }
 
-    buscarSocioXDni(documento: number) {
-        const dniEncontrado = this.data().find((dni: {documento: number}) => dni.documento === documento);
-        console.log(`El nombre ${documento} se ecuentra en la base de datos. ${dniEncontrado}`);
+    buscarSocioXDni() {
+        let documento: number  = readlineSync.question('Escriba el DNI del Socio que desea buscar: ');
+        const dniEncontrado: number = this.data().find((dni: {documento: number}) => dni.documento === documento);
+        console.log(`El DNI '${documento}' se encuentra en la base de datos.`);
         return dniEncontrado;
     }
 
-    buscarSocioXFechaNacimiento(fecha: number) {
-        const fechaEncontrada = this.data().find((fechaNac: {fechaNacimiento: number}) => fechaNac.fechaNacimiento === fecha);
-        console.log(`El nombre ${fecha} se ecuentra en la base de datos. ${fechaEncontrada}`);
+    buscarSocioXFechaNacimiento() {
+        let fecha: string  = readlineSync.question('Escriba la fecha de nacimiento del Socio que desea buscar. Formato DD/MM/YYYY: ');
+        const fechaEncontrada: string = this.data().find((fechaNac: {fechaNacimiento: string}) => fechaNac.fechaNacimiento === fecha);
+        console.log(`La fecha '${fecha}' se encuentra en la base de datos.`);
         return fechaEncontrada;
     }
 }

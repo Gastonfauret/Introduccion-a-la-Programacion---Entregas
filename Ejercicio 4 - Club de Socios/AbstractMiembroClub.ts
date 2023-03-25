@@ -15,7 +15,7 @@ export default abstract class MiembroClub implements Persona {
     constructor(nombre: string, apellido: string, fechaNacimiento: string, documento: number, telefono: number) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fechaNacimiento = new Date(fechaNacimiento).toLocaleDateString();
+        this.fechaNacimiento = fechaNacimiento;
         this.documento = documento;
         this.telefono = telefono
         this.miembroDesde = new Date().toLocaleDateString();
