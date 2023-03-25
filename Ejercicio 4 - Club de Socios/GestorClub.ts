@@ -31,4 +31,28 @@ export default class GestorClub {
         let socios = [...this.data(), newSocio] // Spread Operator: Muestra el contenido del tipo de datos que le pacemos. En este caso un Array. Se agrega el 'newSocio'.
         fs.writeFileSync('./socios.json', JSON.stringify(socios, null, 2)); // Pasa los datos a Formato JSON. Parametro (archivo, reemplazo de archivo, espacios en el archivo).
     }
+
+    buscarSocioXNombre(nombre: string) {
+        const nombreEncontrado = this.data().find((socio: {nombre: string}) => socio.nombre === nombre);
+        console.log(`El nombre ${nombre} se ecuentra en la base de datos. ${nombreEncontrado}`);
+        return nombreEncontrado;
+    }
+
+    buscarSocioXApellido(apellido: string) {
+        const apellidoEncontrado = this.data().find((socio: {apellido: string}) => socio.apellido === apellido);
+        console.log(`El nombre ${apellido} se ecuentra en la base de datos. ${apellidoEncontrado}`);
+        return apellidoEncontrado;
+    }
+
+    buscarSocioXDni(documento: number) {
+        const dniEncontrado = this.data().find((dni: {documento: number}) => dni.documento === documento);
+        console.log(`El nombre ${documento} se ecuentra en la base de datos. ${dniEncontrado}`);
+        return dniEncontrado;
+    }
+
+    buscarSocioXFechaNacimiento(fecha: number) {
+        const fechaEncontrada = this.data().find((fechaNac: {fechaNacimiento: number}) => fechaNac.fechaNacimiento === fecha);
+        console.log(`El nombre ${fecha} se ecuentra en la base de datos. ${fechaEncontrada}`);
+        return fechaEncontrada;
+    }
 }
