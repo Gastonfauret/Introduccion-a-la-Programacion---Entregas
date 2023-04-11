@@ -1,15 +1,13 @@
-import Materia from "./claseMaterias";
+import Naturalez from "./modalidadNaturales";
+import Sociales from "./modalidadSociales";
 
-let modalidades: Array<object> = [];
-// console.log(modalidades);
-// console.log(typeof(modalidades));
+const modalidadSociales: object = {Sociales: 0, Civica: 0, Politica: 0, Sociologia: 0};
+const modalidadNaturales: object = {Biologia: 0, Fisica: 0, Quimica: 0, Anatomia: 0};
 
-const sociales: Array<string> = ['Sociales', 'Civica', 'Politica', 'Sociologia'];
-const naturales: Array<string> = ['Biologia', 'Fisica', 'Quimica', 'Anatomia'];
-const otroArray: Array<object> = [];
-otroArray.push(sociales);
-otroArray.push(naturales);
-console.log(otroArray);
+const materiasSociales = new Sociales(modalidadSociales);
+materiasSociales.setInfo();
+// console.log(materiasSociales);
 
-
-modalidades = new Materia();
+const materiasNaturalez = new Naturalez(modalidadNaturales);
+materiasNaturalez.setInfo();
+// console.log(materiasNaturalez);
