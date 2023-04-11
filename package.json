@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.15.8",
     "readline-sync": "^1.4.10",
     "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
   }
 }

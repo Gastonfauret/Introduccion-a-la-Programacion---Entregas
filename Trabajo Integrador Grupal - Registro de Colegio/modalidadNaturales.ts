@@ -1,11 +1,11 @@
-export default class Naturalez {
-    private naturalez: {};
+export default class Naturales {
+    private naturales: {};
 
-    constructor(naturalez = {}) {      
-        this.naturalez = naturalez;  
+    constructor(naturales = {}) {      
+        this.naturales = naturales;  
     }
 
     setInfo(): void {
-        console.log(this.naturalez);        
+        console.log(this.naturales);        
     }
 }
