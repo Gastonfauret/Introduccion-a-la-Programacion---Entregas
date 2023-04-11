@@ -1,11 +1,10 @@
-export class Materia {
-    materias: string[];
-    constructor(materias:string[]) {
-        this.materias = [];
+export default class Materia {
+    modalidades: Array<object>;
+    constructor(modalidades: Array<object>) {      
+        this.modalidades = modalidades;  
     }
 
-    setInfo() {
-        return this.materias;
+    setInfo(): void {
+        console.log(this.modalidades);        
     }
 }
-
