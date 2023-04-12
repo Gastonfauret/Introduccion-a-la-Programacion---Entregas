@@ -1,8 +1,6 @@
-export interface Personas {
+export default interface Personas {
     nombre: string;
     apellido: string;
     dni: number;
-    fechaNacimiento: string;
-
-    setInfo();
+    fechaNacimiento: string;    
 }
