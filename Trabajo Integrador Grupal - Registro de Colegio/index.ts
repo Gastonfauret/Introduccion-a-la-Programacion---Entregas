@@ -1,29 +1,51 @@
 import Alumnos from "./claseAlumnos";
+import promptSync from 'prompt-sync';
+
+const prompt = promptSync();
 
 const datosAlumnos: Array<{}> = [];
 
+console.log('--------------------------------------------------');
+
 const modalidadSociales = {sociales: 0, civica: 0, politica: 0, sociologia: 0};
+
+const notaSociales: number = Number(prompt('Nota de Sociales: '));
+const notaCivica: number = Number(prompt('Nota de Civica: '));
+const notaPolitica: number = Number(prompt('Nota de Politica: '));
+const notaSociologia: number = Number(prompt('Nota de Sociologia: '));
+
+modalidadSociales.sociales = notaSociales;
+modalidadSociales.civica = notaCivica;
+modalidadSociales.politica = notaPolitica;
+modalidadSociales.sociologia = notaSociologia;
+
+console.log(`Notas de la Modalidad Sociales ${ Object.values(modalidadSociales)}`);
+console.log('Promedio: ', promedio(modalidadSociales));
+
+console.log('--------------------------------------------------');
+
 const modalidadNaturales = {biologia: 0, fisica: 0, quimica: 0, anatomia: 0};
 
-console.log(modalidadSociales);
-console.log(modalidadNaturales);
+const notaBiologia: number = Number(prompt('Nota de Biologia: '));
+const notaFisica: number = Number(prompt('Nota de Fisica: '));
+const notaQuimica: number = Number(prompt('Nota de Quimica: '));
+const notaAnatomia: number = Number(prompt('Nota de Anatomia: '));
 
-modalidadSociales.sociales = 9;
-modalidadSociales.civica = 8;
-modalidadSociales.politica = 7;
-modalidadSociales.sociologia = 10;
+modalidadNaturales.biologia = notaBiologia;
+modalidadNaturales.fisica = notaFisica;
+modalidadNaturales.quimica = notaQuimica;
+modalidadNaturales.anatomia = notaAnatomia;
 
-modalidadNaturales.biologia = 7;
-modalidadNaturales.fisica = 6;
-modalidadNaturales.quimica = 1;
-modalidadNaturales.anatomia = 0;
+console.log(`Notas de la Modalidad Sociales ${ Object.values(modalidadNaturales)}`);
+console.log('Promedio: ', promedio(modalidadNaturales));
 
-console.log(modalidadSociales);
-console.log(modalidadNaturales);
+console.log('--------------------------------------------------');
 
-console.log(promedio(modalidadSociales));
-console.log(promedio(modalidadNaturales));
+// console.log(modalidadSociales);
+// console.log(modalidadNaturales);
 
+// console.log(promedio(modalidadSociales));
+// console.log(promedio(modalidadNaturales));
 
 // const juanPerez = new Alumnos('Juan', 'Perez', 42347925, '07/12/2010', 100, modalidadSociales,);
 // datosAlumnos.push(juanPerez);
@@ -43,11 +65,15 @@ function promedio(object: {}) {
     return promedio
 };
 
-
 // const items = ['Gaston', 'Pedro', 'Juan']
 // const seleccion = readLineSync.keyInSelect(items)
 // console.log(`Hola ${items[seleccion]}, como estas?`);
 
+// let nombre: string = String(prompt('Ingrese Nombre: ', ""));
+// console.log(`Hola, ${nombre}. Bienvenido!`);
+
+// const nombre: number = Number(prompt('Escriba su Edad: '));
+// console.log(`Hola ${nombre}. Bienvenido!`);
 
 
 
