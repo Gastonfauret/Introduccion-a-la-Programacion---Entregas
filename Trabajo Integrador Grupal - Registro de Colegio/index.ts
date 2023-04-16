@@ -4,26 +4,30 @@ const readlineSync = require('readline-sync')
 
 const datosAlumnos: Array<{}> = [];
 
-function promedio(object: {}) {
-    const arrayNotas: Array<number> = Object.values(object);
-    const sumaNotas: number = arrayNotas.reduce((total, actual) => total + actual, 0)
-    const promedio = sumaNotas / arrayNotas.length
-    return promedio
-};
-
 function añadeAlumno() {
     const nombre = readlineSync.question('Ingrese nombre del alumno: ');
     const apellido = readlineSync.question('Ingrese apellido del alumno: ');
     const dni = readlineSync.question('Ingrese dni del alumno: ');
     const fechaNacimiento = readlineSync.question('Ingrese fecha de nacimiento del alumno, formato DD/MM/AAAA: ');
-    const matricula = 100
+    const matricula = Number(generadorMat());
     const modalidad = String(eligeModalidad());
-    const materias = añadeMaterias();
-    const promedioFinal = promedio(materias)
+    const materias = Object(añadeMaterias());
+    const promedioFinal = promedio(materias);
     const profesores = añadeProfesores();
 
-    function añadeMaterias(): any {
-        if (modalidad === 'Naturales') return { biologia: 0, fisica: 0, quimica: 0, anatomia: 0 }; if (modalidad === 'Sociales') return { sociales: 0, civica: 0, politica: 0, sociologia: 0 };
+    function añadeMaterias() {
+        if (modalidad === 'Naturales') {
+            const notaBiologia: number = Number(readlineSync.question('Ingrese nota de Biologia: '));
+            const notaFisica: number = Number(readlineSync.question('Ingrese nota de Fisica: '));
+            const notaQuimica: number = Number(readlineSync.question('Ingrese nota de Quimica: '));
+            const notaAnatomia: number = Number(readlineSync.question('Ingrese nota de Anatomia: '));
+            return { biologia: notaBiologia, fisica: notaFisica, quimica: notaQuimica, anatomia: notaAnatomia }}; 
+        if (modalidad === 'Sociales') {
+            const notaSociales: number = Number(readlineSync.question('Ingrese nota de Sociales: '));
+            const notaCivica: number = Number(readlineSync.question('Ingrese nota de Civica: '));
+            const notaPolitica: number = Number(readlineSync.question('Ingrese nota de Politica: '));
+            const notaSociologia: number = Number(readlineSync.question('Ingrese nota de Sociologia: '));
+            return { sociales: notaSociales, civica: notaCivica, politica: notaPolitica, sociologia: notaSociologia }};
     }
 
     function añadeProfesores(): any {
@@ -34,15 +38,15 @@ function añadeAlumno() {
     const alumno = new Alumnos(nombre, apellido, dni, fechaNacimiento, matricula, modalidad, materias, promedioFinal, profesores);
 
     datosAlumnos.push(alumno);
-    console.log(`Alumno añadido con Exito`, alumno);
+    console.log(`Alumno añadido con Exito.`, alumno);
     menu();
 }
 
 function buscaAlumno() {
-    const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
-    let nombreEncontrado = datosAlumnos.find(element => element.apellido === apellido);
-    console.log(`Alumno encontrado`, nombreEncontrado);
-    menu();
+    // const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
+    // let nombreEncontrado = datosAlumnos.find(element => element.apellido === apellido);
+    // console.log(`Alumno encontrado`, nombreEncontrado);
+    // menu();
 }
 
 function eliminaAlumno() {
@@ -70,7 +74,15 @@ function eliminaProfesor() {
     menu();
 }
 
-function eligeModalidad(): any {
+function promedio(materias: {}) {
+    const arrayNotas: Array<number> = Object.values(materias);
+    const promedio = arrayNotas.reduce((valorAnterior: number, valorActual: number) => {return valorAnterior + valorActual;}, 0);
+    const promedioTotal = promedio / arrayNotas.length;
+    return promedioTotal    
+};
+
+
+function eligeModalidad() {
     const modalidad = ['Naturales', 'Sociales'];
     console.log('Seleccione la modalidad: ');
     const seleccionModalidad = readlineSync.keyInSelect(modalidad);
@@ -101,3 +113,11 @@ menu();
 
 // const nombre: number = Number(prompt('Escriba su Edad: '));
 // console.log(`Hola ${nombre}. Bienvenido!`);
+
+const matricula = Math.floor(Math.random() * 11);
+function generadorMat() {
+    const matricula = Math.floor(Math.random() * 10000);
+    return matricula
+}
+
+
