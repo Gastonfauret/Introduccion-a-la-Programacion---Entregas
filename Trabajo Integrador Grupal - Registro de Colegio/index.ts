@@ -93,8 +93,7 @@ function añadeMateriasProf() {
         if (eligeMaterias[seleccionMaterias] === eligeMaterias[7]) seleccionMaterias = eligeMaterias[7];
         materiasProfesor.push(seleccionMaterias);
     }
-    return materiasProfesor;
-    
+    return materiasProfesor;    
 }
 
 function buscaProfesor() {
@@ -113,7 +112,6 @@ function promedio(materias: {}) {
     const promedioTotal = promedio / arrayNotas.length;
     return promedioTotal    
 };
-
 
 function eligeModalidad() {
     const modalidad = ['Naturales', 'Sociales'];
@@ -134,7 +132,6 @@ function menu() {
     else if (items[seleccion] === items[4]) añadeProfesor();
     else if (items[seleccion] === items[5]) buscaProfesor();
     else if (items[seleccion] === items[6]) eliminaProfesor();
-
 }
 
 menu();
@@ -152,5 +149,3 @@ function generadorMat() {
     const matricula = Math.floor(Math.random() * 10000);
     return matricula
 }
-
-
