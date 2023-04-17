@@ -1,6 +1,4 @@
-import { Personas } from "./interfacePersonas";
-import Naturales from "./modalidadNaturales";
-import Sociales from "./modalidadSociales";
+import Personas from "./interfacePersonas";
 
 export default class Profesor implements Personas{
     nombre: string;
@@ -17,9 +15,5 @@ export default class Profesor implements Personas{
         this.fechaNacimiento = fechaNacimiento;
         this.contrato = contrato;
         this.materias = materias
-    }
-
-    setInfo() {
-        return Profesor
-    }
+    }    
 }

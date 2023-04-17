@@ -22,11 +22,6 @@ export default class Alumnos implements Personas {
         this.profesores = profesores;
     }
     
-    // promedioTotal(materias: {}) {
-    //     const sumaNota: Array<number> = Object.values(this.materias);
-    //     const promedio: number = sumaNota.reduce((total, actual)=> total + actual, 0)
-    //     const promedioTotal: number = promedio / sumaNota.length;
-    //     return promedioTotal;
-    // } 
+   
 }
 

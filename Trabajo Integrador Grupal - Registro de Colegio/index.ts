@@ -1,8 +1,11 @@
 import Alumnos from "./claseAlumnos";
+import Profesor from "./claseProfesores"
 //const fs = require('fs');
 const readlineSync = require('readline-sync')
 
 const datosAlumnos: Array<{}> = [];
+const datosProfesor: Array<{}> = [];
+const materiasProfesor: Array<string> = [];
 
 function añadeAlumno() {
     const nombre = readlineSync.question('Ingrese nombre del alumno: ');
@@ -13,7 +16,7 @@ function añadeAlumno() {
     const modalidad = String(eligeModalidad());
     const materias = Object(añadeMaterias());
     const promedioFinal = promedio(materias);
-    const profesores = añadeProfesores();
+    const profesores = añadeListadoProfesores();
 
     function añadeMaterias() {
         if (modalidad === 'Naturales') {
@@ -30,7 +33,7 @@ function añadeAlumno() {
             return { sociales: notaSociales, civica: notaCivica, politica: notaPolitica, sociologia: notaSociologia }};
     }
 
-    function añadeProfesores(): any {
+    function añadeListadoProfesores(): any {
         if (modalidad === 'Naturales') return { biologia: 'Manuel Barraza', fisica: 'Juan Manuel Martinez', quimica: 'Marcela Rojas', anatomia: 'Claudia Morales' };
         if (modalidad === 'Sociales') return { sociales: 'Carlos Benitez', civica: 'Maria del Carmen Fernandez', politica: 'Roberto Mandraccio', sociologia: 'Cristina Del Curto' };
     }
@@ -60,8 +63,38 @@ function listadoAlumnos() {
 }
 
 function añadeProfesor() {
-    console.log('Se añade profesor');
+    const nombre: string = readlineSync.question('Ingrese nombre del profesor: ');
+    const apellido: string = readlineSync.question('Ingrese apellido del profesor: ');
+    const dni: number = readlineSync.question('Ingrese dni del profesor: ');
+    const fechaNacimiento = readlineSync.question('Ingrese fecha de nacimiento del alumno, formato DD/MM/AAAA: ');
+    const contrato: number = Number(generadorMat());
+    const materias: any = añadeMateriasProf();
+
+    const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, materias); 
+
+    datosProfesor.push(profesor);
+    console.log(`Profesor añadido con Exito.`, profesor);
     menu();
+}
+
+function añadeMateriasProf() {
+    const cantidadMaterias: number = readlineSync.question('Cuantas materias desea agregar: ');
+    for(let i = 0; i < cantidadMaterias; i++) {
+        const eligeMaterias = ['Biologia', 'Fisica', 'Quimica', 'Anatomia', 'Sociales', 'Civica', 'Politica', 'Sociologia'];
+        console.log('Seleccione las materias: ');
+        let seleccionMaterias = readlineSync.keyInSelect(eligeMaterias);
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[0]) seleccionMaterias = eligeMaterias[0];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[1]) seleccionMaterias = eligeMaterias[1];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[2]) seleccionMaterias = eligeMaterias[2];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[3]) seleccionMaterias = eligeMaterias[3];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[4]) seleccionMaterias = eligeMaterias[4];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[5]) seleccionMaterias = eligeMaterias[5];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[6]) seleccionMaterias = eligeMaterias[6];
+        if (eligeMaterias[seleccionMaterias] === eligeMaterias[7]) seleccionMaterias = eligeMaterias[7];
+        materiasProfesor.push(seleccionMaterias);
+    }
+    return materiasProfesor;
+    
 }
 
 function buscaProfesor() {
