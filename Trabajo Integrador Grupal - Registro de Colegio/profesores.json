@@ -1,0 +1,25 @@
+[
+ {
+  "nombre": "Juan carlos",
+  "apellido": "martinez",
+  "dni": "2342",
+  "fechaNacimiento": "fdfgdf",
+  "contrato": 968,
+  "materias": [
+   "Fisica",
+   "Quimica"
+  ]
+ },
+ {
+  "nombre": "Pepito",
+  "apellido": "Pepon",
+  "dni": "098",
+  "fechaNacimiento": "hvjhvhj",
+  "contrato": 7064,
+  "materias": [
+   "Fisica",
+   "Quimica",
+   "Civica"
+  ]
+ }
+]

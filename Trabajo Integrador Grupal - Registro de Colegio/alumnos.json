@@ -1,0 +1,44 @@
+[
+ {
+  "nombre": "Gaston",
+  "apellido": "Fauret",
+  "dni": "32067437",
+  "fechaNacimiento": "20/05/1985",
+  "matricula": 4245,
+  "modalidad": "Naturales",
+  "materias": {
+   "biologia": 10,
+   "fisica": 9,
+   "quimica": 8,
+   "anatomia": 7
+  },
+  "promedio": 8.5,
+  "profesores": {
+   "biologia": "Manuel Barraza",
+   "fisica": "Juan Manuel Martinez",
+   "quimica": "Marcela Rojas",
+   "anatomia": "Claudia Morales"
+  }
+ },
+ {
+  "nombre": "Adrian",
+  "apellido": "Calo",
+  "dni": "3456",
+  "fechaNacimiento": "345",
+  "matricula": 8912,
+  "modalidad": "Sociales",
+  "materias": {
+   "sociales": 10,
+   "civica": 9,
+   "politica": 8,
+   "sociologia": 7
+  },
+  "promedio": 8.5,
+  "profesores": {
+   "sociales": "Carlos Benitez",
+   "civica": "Maria del Carmen Fernandez",
+   "politica": "Roberto Mandraccio",
+   "sociologia": "Cristina Del Curto"
+  }
+ }
+]

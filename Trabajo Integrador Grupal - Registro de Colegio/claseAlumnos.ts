@@ -20,8 +20,6 @@ export default class Alumnos implements Personas {
         this.materias = materias;
         this.promedio = promedio;
         this.profesores = profesores;
-    }
-    
-   
+    }   
 }
 

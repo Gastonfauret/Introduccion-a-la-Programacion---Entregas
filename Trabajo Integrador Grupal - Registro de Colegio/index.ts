@@ -1,10 +1,19 @@
 import Alumnos from "./claseAlumnos";
 import Profesor from "./claseProfesores"
-//const fs = require('fs');
+const fs = require('fs');
 const readlineSync = require('readline-sync')
 
-const datosAlumnos: Array<{}> = [];
-const datosProfesor: Array<{}> = [];
+// fs.writeFileSync('./alumnos.json', '[]');
+// fs.writeFileSync('./profesores.json', '[]')
+
+function read() { return fs.readlineSync('./alumnos.json')}
+function data() {return JSON.parse(fs.readFileSync('./alumnos.json'))};
+
+function read2() { return fs.readlineSync('./profesores.json')};
+function data2() {return JSON.parse(fs.readFileSync('./profesores.json'))};
+
+// const datosAlumnos: Array<{}> = [];
+// const datosProfesor: Array<{}> = [];
 const materiasProfesor: Array<string> = [];
 
 function añadeAlumno() {
@@ -40,7 +49,8 @@ function añadeAlumno() {
 
     const alumno = new Alumnos(nombre, apellido, dni, fechaNacimiento, matricula, modalidad, materias, promedioFinal, profesores);
 
-    datosAlumnos.push(alumno);
+    let alumnos = [...data(), alumno] 
+    fs.writeFileSync('./alumnos.json', JSON.stringify(alumnos, null, 1));
     console.log(`Alumno añadido con Exito.`, alumno);
     menu();
 }
@@ -58,7 +68,7 @@ function eliminaAlumno() {
 }
 
 function listadoAlumnos() {
-    console.log(datosAlumnos);
+    console.log(...data());
     menu()
 }
 
@@ -72,7 +82,8 @@ function añadeProfesor() {
 
     const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, materias); 
 
-    datosProfesor.push(profesor);
+    let profesores = [...data2(), profesor] 
+    fs.writeFileSync('./profesores.json', JSON.stringify(profesores, null, 1));
     console.log(`Profesor añadido con Exito.`, profesor);
     menu();
 }
@@ -93,8 +104,7 @@ function añadeMateriasProf() {
         if (eligeMaterias[seleccionMaterias] === eligeMaterias[7]) seleccionMaterias = eligeMaterias[7];
         materiasProfesor.push(seleccionMaterias);
     }
-    return materiasProfesor;
-    
+    return materiasProfesor;    
 }
 
 function buscaProfesor() {
@@ -113,7 +123,6 @@ function promedio(materias: {}) {
     const promedioTotal = promedio / arrayNotas.length;
     return promedioTotal    
 };
-
 
 function eligeModalidad() {
     const modalidad = ['Naturales', 'Sociales'];
@@ -134,7 +143,6 @@ function menu() {
     else if (items[seleccion] === items[4]) añadeProfesor();
     else if (items[seleccion] === items[5]) buscaProfesor();
     else if (items[seleccion] === items[6]) eliminaProfesor();
-
 }
 
 menu();
@@ -152,5 +160,3 @@ function generadorMat() {
     const matricula = Math.floor(Math.random() * 10000);
     return matricula
 }
-
-

@@ -13,7 +13,7 @@ export default class GestorClub {
         fs.writeFileSync('./socios.json', '[]') //Funcion que genera un archivo JSON, parametros(archivos que va a generar, que formato le vas a meter).
     }
 
-    read() { return fs.readlineSync('./socios.json')}; // Toma el arhivo de 'socios.jason' y lo lee.
+    read() { return fs.readlineSync('./socios.json')}; // Toma el arhivo de 'socios.json' y lo lee.
     data() {return JSON.parse(fs.readFileSync('./socios.json'))}; // Toma el archivo 'socios.json' lo covierte en objeto de JS. Para poder manipularlo como un array.
     
     agregarSocio(){
