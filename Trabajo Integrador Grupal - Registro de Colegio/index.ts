@@ -56,14 +56,39 @@ function añadeAlumno() {
 }
 
 function buscaAlumno() {
-    // const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
-    // let nombreEncontrado = datosAlumnos.find(element => element.apellido === apellido);
-    // console.log(`Alumno encontrado`, nombreEncontrado);
-    // menu();
+    console.log('Seleccione el Tipo de dato que desea buscar: ');
+    const datosDeBusqueda: Array<string> = ['Apellido', 'Dni', 'Numero Matricula'];    
+    const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
+        if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0]) return busquedaXapellido();
+        if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return busquedaXdni();
+        if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[2]) return busquedaXmatricula();
+        
+    function busquedaXapellido() {
+        const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
+    let nombreEncontrado = data().filter((element: {apellido: string}) => element.apellido === apellido);
+    console.log(`Alumno encontrado:`, nombreEncontrado);
+    menu();
+    }
+
+    function busquedaXdni() {
+        const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
+    let dniEncontrado = data().filter((element: {dni: number}) => element.dni === dni);
+    console.log(`Alumno encontrado:`, dniEncontrado);
+    menu();
+    }
+
+    function busquedaXmatricula() {
+        const matricula = readlineSync.question('Escriba la Matricula del alumno que desea buscar: ');
+    let matriculaEncontrada = data().filter((element: {matricula: number}) => element.matricula === matricula);
+    console.log(`Alumno encontrado:`, matriculaEncontrada);
+    menu();
+    }    
 }
 
 function eliminaAlumno() {
-    console.log('Se elimina alumno');
+    const dni = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
+    let dniEncontrado = data().filter((element: {dni: number}) => element.dni === dni);
+    delete dniEncontrado.;
     menu();
 }
 
