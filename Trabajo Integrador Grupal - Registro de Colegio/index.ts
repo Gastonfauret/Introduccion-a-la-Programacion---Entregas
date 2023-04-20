@@ -4,6 +4,7 @@ import RegistroColegio from "./registroColegio";
 
 let alumno = new RegistroColegio;
 alumno.menu();
+
 // const fs = require('fs');
 // const readlineSync = require('readline-sync')
 

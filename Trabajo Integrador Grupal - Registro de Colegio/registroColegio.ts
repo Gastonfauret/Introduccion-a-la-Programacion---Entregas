@@ -6,8 +6,8 @@ const readlineSync = require('readline-sync')
 
 export default class RegistroColegio {
     constructor() {
-        fs.writeFileSync('./alumnos.json', '[]');
-        fs.writeFileSync('./profesores.json', '[]')      
+        //fs.writeFileSync('./alumnos.json', '[]');
+        //fs.writeFileSync('./profesores.json', '[]')      
     }
 
     read() { return fs.readlineSync('./alumnos.json') }
@@ -47,13 +47,13 @@ añadeAlumno():void {
     }
 
     function añadeListadoProfesores(): any {
-        if (modalidad === 'Naturales') return { biologia: 'Manuel Barraza', fisica: 'Juan Manuel Martinez', quimica: 'Marcela Rojas', anatomia: 'Claudia Morales' };
-        if (modalidad === 'Sociales') return { sociales: 'Carlos Benitez', civica: 'Maria del Carmen Fernandez', politica: 'Roberto Mandraccio', sociologia: 'Cristina Del Curto' };
+        if (modalidad === 'Naturales') return { biologia: 'Manuel Barraza', fisica: 'Marcela Rojas', quimica: 'Marcela Rojas', anatomia: 'Claudia Morales' };
+        if (modalidad === 'Sociales') return { sociales: 'Carlos Benitez', civica: 'Carlos Benitez', politica: 'Roberto Mandraccio', sociologia: 'Cristina Del Curto' };
     }
 
     const alumno = new Alumnos(nombre, apellido, dni, fechaNacimiento, matricula, modalidad, materias, promedioFinal, profesores);
 
-    let alumnos = [...this.data(), alumno]
+    let alumnos = [this.data(), alumno]
     fs.writeFileSync('./alumnos.json', JSON.stringify(alumnos, null, 1));
     console.log(`Alumno añadido con Exito.`, alumno);
     this.menu();
@@ -67,21 +67,21 @@ buscaAlumno() {
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return busquedaXdni();
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[2]) return busquedaXmatricula();
 
-    function busquedaXapellido () {
+    function busquedaXapellido (this: any) {
         const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
         let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
         console.log(`Alumno encontrado:`, nombreEncontrado);
         this.menu();
     }
 
-    function busquedaXdni() {
+    function busquedaXdni(this: any) {
         const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
         let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
         console.log(`Alumno encontrado:`, dniEncontrado);
         this.menu();
     }
 
-    function busquedaXmatricula() {
+    function busquedaXmatricula(this: any) {
         const matricula = readlineSync.question('Escriba la Matricula del alumno que desea buscar: ');
         let matriculaEncontrada = this.data().filter((element: { matricula: number }) => element.matricula === matricula);
         console.log(`Alumno encontrado:`, matriculaEncontrada);
@@ -89,19 +89,24 @@ buscaAlumno() {
     }
 }
 
-eliminaAlumno() {
+eliminaAlumno(this: any) {
     const dni = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
     //delete dniEncontrado;
     this.menu();
 }
 
-listadoAlumnos() {
-    console.log(...this.data());
+listadoAlumnos(this: any) {
+    console.log(this.data());
     this.menu()
 }
 
-añadeProfesor() {
+listadoProfesores(this: any) {
+    console.log(this.data2());
+    this.menu()
+}
+
+añadeProfesor(this: any) {
     const nombre: string = readlineSync.question('Ingrese nombre del profesor: ');
     const apellido: string = readlineSync.question('Ingrese apellido del profesor: ');
     const dni: number = readlineSync.question('Ingrese dni del profesor: ');
@@ -161,8 +166,8 @@ eligeModalidad() {
     if (modalidad[seleccionModalidad] === modalidad[1]) return modalidad[1];
 }
 
-menu() {
-    const items = ['Anadir Alumno', 'Buscar Alumno', 'Eliminar Alumno', 'Listado de Alumnos', 'Anadir Profesor', 'Buscar Profesor', 'Eliminar Profesor',];
+menu(this: any) {
+    const items = ['Anadir Alumno', 'Buscar Alumno', 'Eliminar Alumno', 'Listado de Alumnos', 'Anadir Profesor', 'Buscar Profesor', 'Eliminar Profesor', 'Listado de Profesores'];
     const seleccion = readlineSync.keyInSelect(items)
 
     if (items[seleccion] === items[0]) this.añadeAlumno();
@@ -172,9 +177,9 @@ menu() {
     else if (items[seleccion] === items[4]) this.añadeProfesor();
     else if (items[seleccion] === items[5]) this.buscaProfesor();
     else if (items[seleccion] === items[6]) this.eliminaProfesor();
+    else if (items[seleccion] === items[7]) this.listadoProfesores();
 }
 
-//let matricula = Math.floor(Math.random() * 11);
 generadorMat() {
     const matricula = Math.floor(Math.random() * 10000);
     return matricula

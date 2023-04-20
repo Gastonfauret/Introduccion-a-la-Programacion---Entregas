@@ -1,25 +1,16 @@
 [
  {
-  "nombre": "Juan carlos",
-  "apellido": "martinez",
-  "dni": "2342",
-  "fechaNacimiento": "fdfgdf",
-  "contrato": 968,
+  "nombre": "pepe",
+  "apellido": "perez",
+  "dni": "123",
+  "fechaNacimiento": "gf",
+  "contrato": 2969,
   "materias": [
-   "Fisica",
-   "Quimica"
-  ]
- },
- {
-  "nombre": "Pepito",
-  "apellido": "Pepon",
-  "dni": "098",
-  "fechaNacimiento": "hvjhvhj",
-  "contrato": 7064,
-  "materias": [
+   "Biologia",
    "Fisica",
    "Quimica",
-   "Civica"
+   "Anatomia",
+   "Sociales"
   ]
  }
 ]
