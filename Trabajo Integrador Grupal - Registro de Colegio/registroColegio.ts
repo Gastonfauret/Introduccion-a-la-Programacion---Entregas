@@ -8,17 +8,18 @@ export default class RegistroColegio {
     //     fs.writeFileSync('./alumnos.json', '[]');
     //     fs.writeFileSync('./profesores.json', '[]');     
     // }
+    
     constructor() {
-        if (fs.existsSync("./alumnos.json.json")) {
+        if (fs.existsSync("./alumnos.json")) {
             console.log("Archivo existente");
     
         } else {
-            fs.writeFileSync("./alumnos.json.json", "[]", "utf-8");
+            fs.writeFileSync("./alumnos.json", "utf-8");
         }
-        if (fs.existsSync("./profesores.json.json")) {
+        if (fs.existsSync("./profesores.json")) {
             console.log("Archivo existente");
         } else {
-            fs.writeFileSync("./profesores.json", "[]", "utf-8")
+            fs.writeFileSync("./profesores.json", "utf-8")
         }    
     }
 
@@ -26,8 +27,8 @@ export default class RegistroColegio {
     data() { return JSON.parse(fs.readFileSync('./alumnos.json')) };
 
     read2() { return fs.readlineSync('./profesores.json') };
-    data2() { return JSON.parse(fs.readFileSync('./profesores.json')) };
-
+    data2() { return JSON.parse(fs.readFileSync('./profesores.json')) };     
+    
     materiasProfesor: Array<string> = [];
 
 añadeAlumno() {
@@ -65,7 +66,8 @@ añadeAlumno() {
 
     const alumno = new Alumnos(nombre, apellido, dni, fechaNacimiento, matricula, modalidad, materias, promedioFinal, profesores);
 
-    let alumnos = [this.data(), alumno]
+    let alumnos = [...this.data(), alumno];
+        
     fs.writeFileSync('./alumnos.json', JSON.stringify(alumnos, null, 1));
     console.log(`Alumno añadido con Exito.`, alumno);
     this.menu();
@@ -73,49 +75,41 @@ añadeAlumno() {
 
 buscaAlumno() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
-    const datosDeBusqueda: Array<string> = ['Apellido', 'Dni', 'Numero Matricula'];
+    const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
     const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0])
     return busquedaXapellido();
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return busquedaXdni();
-    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[2]) return busquedaXmatricula();
 
     function busquedaXapellido (this: any) {
         const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
-        let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
+        let nombreEncontrado = this.data().find((element: { apellido: string }) => element.apellido === apellido);
         console.log(`Alumno encontrado:`, nombreEncontrado);
         this.menu();
     }
 
     function busquedaXdni(this: any) {
         const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
-        let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
+        let dniEncontrado = this.data().find((element: { dni: number }) => element.dni === dni);
         console.log(`Alumno encontrado:`, dniEncontrado);
         this.menu();
     }
-
-    function busquedaXmatricula(this: any) {
-        const matricula = readlineSync.question('Escriba la Matricula del alumno que desea buscar: ');
-        let matriculaEncontrada = this.data().filter((element: { matricula: number }) => element.matricula === matricula);
-        console.log(`Alumno encontrado:`, matriculaEncontrada);
-        this.menu();
-    }
 }
 
-eliminaAlumno(this: any) {
-    const dni = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
-    let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
-    //delete dniEncontrado;
-    this.menu();
-}
+// eliminaAlumno(this: any) {
+//     const dni = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
+//     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
+//     //delete dniEncontrado;
+//     this.menu();
+// }
 
 listadoAlumnos(this: any) {
-    console.log(this.data());
+    console.log(...this.data());
     this.menu()
 }
 
 listadoProfesores(this: any) {
-    console.log(this.data2());
+    console.log(...this.data2());
     this.menu()
 }
 

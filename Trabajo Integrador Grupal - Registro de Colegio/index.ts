@@ -1,5 +1,3 @@
-import Alumnos from "./claseAlumnos";
-import Profesor from "./claseProfesores"
 import RegistroColegio from "./registroColegio";
 
 let alumno = new RegistroColegio;
@@ -17,8 +15,8 @@ alumno.menu();
 // function read2() { return fs.readlineSync('./profesores.json')};
 // function data2() {return JSON.parse(fs.readFileSync('./profesores.json'))};
 
-// // const datosAlumnos: Array<{}> = [];
-// // const datosProfesor: Array<{}> = [];
+// const datosAlumnos: Array<{}> = [];
+// const datosProfesor: Array<{}> = [];
 // const materiasProfesor: Array<string> = [];
 
 // function añadeAlumno() {

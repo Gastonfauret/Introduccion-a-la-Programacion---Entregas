@@ -1,70 +1,65 @@
 [
- [
-  [
-   [],
-   {
-    "nombre": "Pepe",
-    "apellido": "Perez",
-    "dni": "1",
-    "fechaNacimiento": "2",
-    "matricula": 622,
-    "modalidad": "Naturales",
-    "materias": {
-     "biologia": 1,
-     "fisica": 1,
-     "quimica": 1,
-     "anatomia": 1
-    },
-    "promedio": 1,
-    "profesores": {
-     "biologia": "Manuel Barraza",
-     "fisica": "Marcela Rojas",
-     "quimica": "Marcela Rojas",
-     "anatomia": "Claudia Morales"
-    }
-   }
-  ],
-  {
-   "nombre": "pepe",
-   "apellido": "Perez",
-   "dni": "1",
-   "fechaNacimiento": "2",
-   "matricula": 4747,
-   "modalidad": "Naturales",
-   "materias": {
-    "biologia": 1,
-    "fisica": 2,
-    "quimica": 3,
-    "anatomia": 4
-   },
-   "promedio": 2.5,
-   "profesores": {
-    "biologia": "Manuel Barraza",
-    "fisica": "Marcela Rojas",
-    "quimica": "Marcela Rojas",
-    "anatomia": "Claudia Morales"
-   }
-  }
- ],
  {
-  "nombre": "Jose",
-  "apellido": "Gonzalez",
-  "dni": "12",
-  "fechaNacimiento": "23",
-  "matricula": 941,
+  "nombre": "Gaston",
+  "apellido": "Fauret",
+  "dni": "32067437",
+  "fechaNacimiento": "20/05/1986",
+  "matricula": 4919,
   "modalidad": "Naturales",
   "materias": {
    "biologia": 10,
-   "fisica": 1,
-   "quimica": 2,
-   "anatomia": 3
+   "fisica": 9,
+   "quimica": 8,
+   "anatomia": 8
   },
-  "promedio": 4,
+  "promedio": 8.75,
   "profesores": {
    "biologia": "Manuel Barraza",
    "fisica": "Marcela Rojas",
    "quimica": "Marcela Rojas",
    "anatomia": "Claudia Morales"
+  }
+ },
+ {
+  "nombre": "Adrian",
+  "apellido": "Calo",
+  "dni": "35411654",
+  "fechaNacimiento": "10/09/1990",
+  "matricula": 849,
+  "modalidad": "Sociales",
+  "materias": {
+   "sociales": 10,
+   "civica": 9,
+   "politica": 8,
+   "sociologia": 7
+  },
+  "promedio": 8.5,
+  "profesores": {
+   "sociales": "Carlos Benitez",
+   "civica": "Carlos Benitez",
+   "politica": "Roberto Mandraccio",
+   "sociologia": "Cristina Del Curto"
+  }
+ },
+ {
+  "nombre": "Tomas",
+  "apellido": "Cardenas",
+  "dni": "37234765",
+  "fechaNacimiento": "01/02/1996",
+  "matricula": 9728,
+  "modalidad": "Sociales",
+  "materias": {
+   "sociales": 10,
+   "civica": 6,
+   "politica": 8,
+   "sociologia": 4
+  },
+  "promedio": 7,
+  "profesores": {
+   "sociales": "Carlos Benitez",
+   "civica": "Carlos Benitez",
+   "politica": "Roberto Mandraccio",
+   "sociologia": "Cristina Del Curto"
   }
  }
 ]
