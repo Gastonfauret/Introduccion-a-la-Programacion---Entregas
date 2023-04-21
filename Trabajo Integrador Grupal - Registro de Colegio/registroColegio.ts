@@ -3,14 +3,26 @@ import Profesor from "./claseProfesores";
 
 const fs = require('fs');
 const readlineSync = require('readline-sync')
-
 export default class RegistroColegio {
+    // constructor() {
+    //     fs.writeFileSync('./alumnos.json', '[]');
+    //     fs.writeFileSync('./profesores.json', '[]');     
+    // }
     constructor() {
-        //fs.writeFileSync('./alumnos.json', '[]');
-        //fs.writeFileSync('./profesores.json', '[]')      
+        if (fs.existsSync("./alumnos.json.json")) {
+            console.log("Archivo existente");
+    
+        } else {
+            fs.writeFileSync("./alumnos.json.json", "[]", "utf-8");
+        }
+        if (fs.existsSync("./profesores.json.json")) {
+            console.log("Archivo existente");
+        } else {
+            fs.writeFileSync("./profesores.json", "[]", "utf-8")
+        }    
     }
 
-    read() { return fs.readlineSync('./alumnos.json') }
+    read() { return fs.readlineSync('./alumnos.json') };
     data() { return JSON.parse(fs.readFileSync('./alumnos.json')) };
 
     read2() { return fs.readlineSync('./profesores.json') };
@@ -18,7 +30,7 @@ export default class RegistroColegio {
 
     materiasProfesor: Array<string> = [];
 
-añadeAlumno():void {
+añadeAlumno() {
     const nombre = readlineSync.question('Ingrese nombre del alumno: ');
     const apellido = readlineSync.question('Ingrese apellido del alumno: ');
     const dni = readlineSync.question('Ingrese dni del alumno: ');
@@ -63,12 +75,13 @@ buscaAlumno() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni', 'Numero Matricula'];
     const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
-    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0]) return busquedaXapellido();
+    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0])
+    return busquedaXapellido();
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return busquedaXdni();
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[2]) return busquedaXmatricula();
 
     function busquedaXapellido (this: any) {
-        const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');
+        const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
         let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
         console.log(`Alumno encontrado:`, nombreEncontrado);
         this.menu();
@@ -180,6 +193,7 @@ menu(this: any) {
     else if (items[seleccion] === items[7]) this.listadoProfesores();
 }
 
+matricula = Math.floor(Math.random() * 11);
 generadorMat() {
     const matricula = Math.floor(Math.random() * 10000);
     return matricula

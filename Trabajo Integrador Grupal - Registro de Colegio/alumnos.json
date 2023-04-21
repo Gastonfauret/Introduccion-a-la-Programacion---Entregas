@@ -1,19 +1,65 @@
 [
- [],
+ [
+  [
+   [],
+   {
+    "nombre": "Pepe",
+    "apellido": "Perez",
+    "dni": "1",
+    "fechaNacimiento": "2",
+    "matricula": 622,
+    "modalidad": "Naturales",
+    "materias": {
+     "biologia": 1,
+     "fisica": 1,
+     "quimica": 1,
+     "anatomia": 1
+    },
+    "promedio": 1,
+    "profesores": {
+     "biologia": "Manuel Barraza",
+     "fisica": "Marcela Rojas",
+     "quimica": "Marcela Rojas",
+     "anatomia": "Claudia Morales"
+    }
+   }
+  ],
+  {
+   "nombre": "pepe",
+   "apellido": "Perez",
+   "dni": "1",
+   "fechaNacimiento": "2",
+   "matricula": 4747,
+   "modalidad": "Naturales",
+   "materias": {
+    "biologia": 1,
+    "fisica": 2,
+    "quimica": 3,
+    "anatomia": 4
+   },
+   "promedio": 2.5,
+   "profesores": {
+    "biologia": "Manuel Barraza",
+    "fisica": "Marcela Rojas",
+    "quimica": "Marcela Rojas",
+    "anatomia": "Claudia Morales"
+   }
+  }
+ ],
  {
-  "nombre": "f",
-  "apellido": "w",
-  "dni": "3",
-  "fechaNacimiento": "4",
-  "matricula": 510,
+  "nombre": "Jose",
+  "apellido": "Gonzalez",
+  "dni": "12",
+  "fechaNacimiento": "23",
+  "matricula": 941,
   "modalidad": "Naturales",
   "materias": {
-   "biologia": 1,
-   "fisica": 2,
-   "quimica": 3,
-   "anatomia": 4
+   "biologia": 10,
+   "fisica": 1,
+   "quimica": 2,
+   "anatomia": 3
   },
-  "promedio": 2.5,
+  "promedio": 4,
   "profesores": {
    "biologia": "Manuel Barraza",
    "fisica": "Marcela Rojas",
