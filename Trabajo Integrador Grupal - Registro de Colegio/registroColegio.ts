@@ -1,6 +1,7 @@
 import { error, log } from "console";
 import Alumnos from "./claseAlumnos";
 import Profesor from "./claseProfesores";
+import { DiagnosticCategory } from "typescript";
 
 
 const fs = require('fs');
@@ -82,48 +83,42 @@ buscaAlumno() {
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
     const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0])
-    return this.busquedaXapellido();
-    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.busquedaXdni();    
+    return this.buscaAlumnoXapellido();
+    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaAlumnoXdni();    
 }
 
-busquedaXapellido (this: any) {
+buscaAlumnoXapellido (this: any) {
     const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
     let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
     console.log(`Alumno encontrado:`, nombreEncontrado);
     this.menu();
 }
 
-busquedaXdni(this: any) {
+buscaAlumnoXdni(this: any) {
     const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
     console.log(`Alumno encontrado:`, dniEncontrado);
     this.menu();
 }
 
-
 eliminaAlumno(this: any) {
     const dni: number = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
-    let index: number = this.data().length;
-    while(index) {
-        let dniEncontrado: number = this.data().findIndex((element: { dni: number }) => element.dni === dni);
-        if(dniEncontrado >= 0) {
-            this.data().splice(dniEncontrado, 1);
-            console.log('El Alumno fue eliminado correctamente.', this.data());
-        }
-        index--        
-    }    
-    this.menu();
-}
+        let dniEncontrado: number = this.data().filter((element: { dni: number }) => element.dni != dni);
+        console.log('El alumno fue eliminado con exitosamente', dniEncontrado);
+        const nuevosArchivos = JSON.stringify(dniEncontrado);
+        fs.writeFile('./alumnos.json', nuevosArchivos, (error: any) => {
+            if (error) throw error;
+            console.log('Info Cargada Correctamente.'); 
+            this.menu();           
+        });      
+    }
 
 listadoAlumnos(this: any) {
     console.log(...this.data());
     this.menu()
 }
 
-listadoProfesores(this: any) {
-    console.log(...this.data2());
-    this.menu()
-}
+/*CRUD de Profesores---------------------------------------------------- */
 
 añadeProfesor(this: any) {
     const nombre: string = readlineSync.question('Ingrese nombre del profesor: ');
@@ -161,13 +156,43 @@ añadeMateriasProf() {
 }
 
 buscaProfesor() {
-    console.log('Se buscar profesor');
+    console.log('Seleccione el Tipo de dato que desea buscar: ');
+    const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
+    const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
+    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0])
+    return this.buscaProfesorXApellido();
+    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaProfesorXdni();    
+}
+
+buscaProfesorXApellido() {
+    const apellido = readlineSync.question('Escriba el apellido del profesor que desea buscar: ');        
+    let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
+    console.log(`Profesor encontrado:`, nombreEncontrado);
+    this.menu();
+}
+
+buscaProfesorXdni() {
+    const dni = readlineSync.question('Escriba el dni del profesor que desea buscar: ');
+    let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
+    console.log(`Profesor encontrado:`, dniEncontrado);
     this.menu();
 }
 
 eliminaProfesor() {
-    console.log('Se elimina profesor');
-    this.menu();
+    const dni: number = readlineSync.question('Escriba el dni del profesor que desea eliminar: ');
+        let dniProfesorEncontrado: number = this.data().filter((element: { dni: number }) => element.dni != dni);
+        console.log('El Profesor fue eliminado exitosamente', dniProfesorEncontrado);
+        const nuevosArchivos = JSON.stringify(dniProfesorEncontrado);
+        fs.writeFile('./profesores.json', nuevosArchivos, (error: any) => {
+            if (error) throw error;
+            console.log('Info Cargada Correctamente.'); 
+            this.menu();           
+        });      
+    }
+
+listadoProfesores(this: any) {
+    console.log(...this.data2());
+    this.menu()
 }
 
 promedio(materias: {}) {
