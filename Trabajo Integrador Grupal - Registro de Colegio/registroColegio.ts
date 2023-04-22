@@ -1,5 +1,7 @@
+import { error, log } from "console";
 import Alumnos from "./claseAlumnos";
 import Profesor from "./claseProfesores";
+
 
 const fs = require('fs');
 const readlineSync = require('readline-sync')
@@ -73,35 +75,45 @@ añadeAlumno() {
     this.menu();
 }
 
+/*CRUD de Alumnos---------------------------------------------------- */
+
 buscaAlumno() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
     const seleccionDeDatos = readlineSync.keyInSelect(datosDeBusqueda);
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[0])
-    return busquedaXapellido();
-    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return busquedaXdni();
-
-    function busquedaXapellido (this: any) {
-        const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
-        let nombreEncontrado = this.data().find((element: { apellido: string }) => element.apellido === apellido);
-        console.log(`Alumno encontrado:`, nombreEncontrado);
-        this.menu();
-    }
-
-    function busquedaXdni(this: any) {
-        const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
-        let dniEncontrado = this.data().find((element: { dni: number }) => element.dni === dni);
-        console.log(`Alumno encontrado:`, dniEncontrado);
-        this.menu();
-    }
+    return this.busquedaXapellido();
+    if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.busquedaXdni();    
 }
 
-// eliminaAlumno(this: any) {
-//     const dni = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
-//     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
-//     //delete dniEncontrado;
-//     this.menu();
-// }
+busquedaXapellido (this: any) {
+    const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
+    let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
+    console.log(`Alumno encontrado:`, nombreEncontrado);
+    this.menu();
+}
+
+busquedaXdni(this: any) {
+    const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
+    let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
+    console.log(`Alumno encontrado:`, dniEncontrado);
+    this.menu();
+}
+
+
+eliminaAlumno(this: any) {
+    const dni: number = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
+    let index: number = this.data().length;
+    while(index) {
+        let dniEncontrado: number = this.data().findIndex((element: { dni: number }) => element.dni === dni);
+        if(dniEncontrado >= 0) {
+            this.data().splice(dniEncontrado, 1);
+            console.log('El Alumno fue eliminado correctamente.', this.data());
+        }
+        index--        
+    }    
+    this.menu();
+}
 
 listadoAlumnos(this: any) {
     console.log(...this.data());

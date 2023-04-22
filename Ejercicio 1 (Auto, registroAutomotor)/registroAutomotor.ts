@@ -33,8 +33,7 @@ export class RegistroAutomotor{
             const deleteCar: number = array.findIndex((car: any) => car.marca === auto);
             if (deleteCar >= 0) {
             array.splice(deleteCar, 1);
-            console.log(`The datafile of '${auto}' has been deleted sucesfully.`);
-            
+            console.log(`The datafile of '${auto}' has been deleted sucesfully.`);            
             }
         index--;
     }
