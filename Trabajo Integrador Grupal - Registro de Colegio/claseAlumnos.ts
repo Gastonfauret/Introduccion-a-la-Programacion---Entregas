@@ -1,4 +1,6 @@
+//Importacion de la interfas Personas.
 import Personas from "./interfacePersonas";
+//Creacion de la Clase Alumnos de la cual se implementa la interfas Personas.
 export default class Alumnos implements Personas {
     nombre: string;
     apellido: string;

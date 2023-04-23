@@ -1,1 +1,21 @@
-[]
+[
+ {
+  "nombre": "pepe",
+  "apellido": "pepon",
+  "dni": "1234",
+  "fechaNacimiento": "2345",
+  "contrato": 9854,
+  "modalidad": "Naturales"
+ },
+ {
+  "nombre": "pepe",
+  "apellido": "pepon",
+  "dni": "12",
+  "fechaNacimiento": "23",
+  "contrato": 9358,
+  "modalidad": "Naturales",
+  "materias": [
+   "Biologia"
+  ]
+ }
+]

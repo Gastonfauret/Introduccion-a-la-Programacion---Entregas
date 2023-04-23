@@ -1,21 +1,17 @@
-import { error, log } from "console";
+//Importacion de las clases.
 import Alumnos from "./claseAlumnos";
 import Profesor from "./claseProfesores";
-import { DiagnosticCategory } from "typescript";
 
-
+//Requirimiento del Modulo fileSystem y readLineSync
 const fs = require('fs');
 const readlineSync = require('readline-sync')
-export default class RegistroColegio {
-    // constructor() {
-    //     fs.writeFileSync('./alumnos.json', '[]');
-    //     fs.writeFileSync('./profesores.json', '[]');     
-    // }
-    
+
+//Creacion de la clase RegistroColegio y su correspondiente exportacion por default.
+export default class RegistroColegio {        
+    //Constructor y metodo condicional que lee y crea (de ser necesario) el archivo JSON. Si no mantiene el existente.
     constructor() {
         if (fs.existsSync("./alumnos.json")) {
-            console.log("Archivo existente");
-    
+            console.log("Archivo existente");    
         } else {
             fs.writeFileSync("./alumnos.json", "utf-8");
         }
@@ -26,14 +22,15 @@ export default class RegistroColegio {
         }    
     }
 
+    //Lectura y conversion de archivo Json a Objeto de JavaScript, del archivo alumnos.
     read() { return fs.readlineSync('./alumnos.json') };
     data() { return JSON.parse(fs.readFileSync('./alumnos.json')) };
 
+    //Lectura y conversion de archivo Json a Objeto de JavaScript, del archivo profesores.
     read2() { return fs.readlineSync('./profesores.json') };
     data2() { return JSON.parse(fs.readFileSync('./profesores.json')) };     
     
-    materiasProfesor: Array<string> = [];
-
+    //Menu de opciones de la consola que va preguntando los datos del alumno.
 añadeAlumno() {
     const nombre = readlineSync.question('Ingrese nombre del alumno: ');
     const apellido = readlineSync.question('Ingrese apellido del alumno: ');
@@ -45,6 +42,7 @@ añadeAlumno() {
     const promedioFinal = this.promedio(materias);
     const profesores = añadeListadoProfesores();
 
+    //Metodo que añade las materias al alumno segun la modalidad elegida. Donde tambien podremas cargar las notas obtenidas por alumno.
     function añadeMaterias(): any {
         if (modalidad === 'Naturales') {
             const notaBiologia: number = Number(readlineSync.question('Ingrese nota de Biologia: '));
@@ -62,22 +60,26 @@ añadeAlumno() {
         };
     }
 
+    //Metodo que añade un listado, previamente cargados, de profesores segun la modalidad elegida por el alumno.
     function añadeListadoProfesores(): any {
         if (modalidad === 'Naturales') return { biologia: 'Manuel Barraza', fisica: 'Marcela Rojas', quimica: 'Marcela Rojas', anatomia: 'Claudia Morales' };
         if (modalidad === 'Sociales') return { sociales: 'Carlos Benitez', civica: 'Carlos Benitez', politica: 'Roberto Mandraccio', sociologia: 'Cristina Del Curto' };
     }
 
+    //Creacion de la instancia del alumno, perteneciente a la clase Alumno.
     const alumno = new Alumnos(nombre, apellido, dni, fechaNacimiento, matricula, modalidad, materias, promedioFinal, profesores);
 
+    //Se añade la nueva instancia al arreglo de alumnos.
     let alumnos = [...this.data(), alumno];
         
+    //Carga del nuevo archivos que contiene el nuevo listado de alumnos al archivo JSON (Previa conversion con stringify).
     fs.writeFileSync('./alumnos.json', JSON.stringify(alumnos, null, 1));
     console.log(`Alumno añadido con Exito.`, alumno);
     this.menu();
 }
 
 /*CRUD de Alumnos---------------------------------------------------- */
-
+//Metodo que nos da la posibilidad de buscar a un alumno por su dni o por su apellido.
 buscaAlumno() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
@@ -87,6 +89,7 @@ buscaAlumno() {
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaAlumnoXdni();    
 }
 
+//Metodo que permite busqueda de alumno por su apellido.
 buscaAlumnoXapellido (this: any) {
     const apellido = readlineSync.question('Escriba el apellido del alumno que desea buscar: ');        
     let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
@@ -94,6 +97,7 @@ buscaAlumnoXapellido (this: any) {
     this.menu();
 }
 
+//Metodo que permite busqueda de alumno por su dni.
 buscaAlumnoXdni(this: any) {
     const dni = readlineSync.question('Escriba el dni del alumno que desea buscar: ');
     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
@@ -101,6 +105,7 @@ buscaAlumnoXdni(this: any) {
     this.menu();
 }
 
+//Metodo que permite eliminar un alumno por su dni.
 eliminaAlumno(this: any) {
     const dni: number = readlineSync.question('Escriba el dni del alumno que desea eliminar: ');
         let dniEncontrado: number = this.data().filter((element: { dni: number }) => element.dni != dni);
@@ -113,30 +118,26 @@ eliminaAlumno(this: any) {
         });      
     }
 
+    //Metodo que muestra el listado completo de los alumnos.
 listadoAlumnos(this: any) {
     console.log(...this.data());
     this.menu()
 }
 
 /*CRUD de Profesores---------------------------------------------------- */
-
+//Creacion de instancia profesor y carga al archivo Json.
 añadeProfesor(this: any) {
     const nombre: string = readlineSync.question('Ingrese nombre del profesor: ');
     const apellido: string = readlineSync.question('Ingrese apellido del profesor: ');
     const dni: number = readlineSync.question('Ingrese dni del profesor: ');
     const fechaNacimiento = readlineSync.question('Ingrese fecha de nacimiento del alumno, formato DD/MM/AAAA: ');
     const contrato: number = Number(this.generadorMat());
-    const materias: any = this.añadeMateriasProf();
+    const modalidad: string = String(this.eligeModalidad());
+    const materias: any = añadeMateriasProf();
 
-    const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, materias);
-
-    let profesores = [...this.data2(), profesor]
-    fs.writeFileSync('./profesores.json', JSON.stringify(profesores, null, 1));
-    console.log(`Profesor añadido con Exito.`, profesor);
-    this.menu();
-}
-
-añadeMateriasProf() {
+    //Metodo que permite añadir la cantidad y la materia espesifica a cada profesor.
+function añadeMateriasProf(this: any) {
+    const materiasProfesor: Array<string> = [];    
     const cantidadMaterias: number = readlineSync.question('Cuantas materias desea agregar: ');
     for (let i = 0; i < cantidadMaterias; i++) {
         const eligeMaterias = ['Biologia', 'Fisica', 'Quimica', 'Anatomia', 'Sociales', 'Civica', 'Politica', 'Sociologia'];
@@ -150,11 +151,20 @@ añadeMateriasProf() {
         if (eligeMaterias[seleccionMaterias] === eligeMaterias[5]) seleccionMaterias = eligeMaterias[5];
         if (eligeMaterias[seleccionMaterias] === eligeMaterias[6]) seleccionMaterias = eligeMaterias[6];
         if (eligeMaterias[seleccionMaterias] === eligeMaterias[7]) seleccionMaterias = eligeMaterias[7];
-        this.materiasProfesor.push(seleccionMaterias);
+        materiasProfesor.push(seleccionMaterias);
     }
-    return this.materiasProfesor;
+    return materiasProfesor;
 }
 
+    const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, modalidad, materias);
+
+    let profesores = [...this.data2(), profesor]
+    fs.writeFileSync('./profesores.json', JSON.stringify(profesores, null, 1));
+    console.log(`Profesor añadido con Exito.`, profesor);
+    this.menu();
+}
+
+//Metodo de busqueda de profesores, mediante las modalidades elegidas: dni o apellido.
 buscaProfesor() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
@@ -164,6 +174,8 @@ buscaProfesor() {
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaProfesorXdni();    
 }
 
+
+//Metodo qye busca un profesor mediante un apellido dado por consola.
 buscaProfesorXApellido() {
     const apellido = readlineSync.question('Escriba el apellido del profesor que desea buscar: ');        
     let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
@@ -171,6 +183,7 @@ buscaProfesorXApellido() {
     this.menu();
 }
 
+//Metodo qye busca un profesor mediante un dni dado por consola.
 buscaProfesorXdni() {
     const dni = readlineSync.question('Escriba el dni del profesor que desea buscar: ');
     let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
@@ -178,6 +191,7 @@ buscaProfesorXdni() {
     this.menu();
 }
 
+//Metodo que elimina a un metodo mediante dni elegido.
 eliminaProfesor() {
     const dni: number = readlineSync.question('Escriba el dni del profesor que desea eliminar: ');
         let dniProfesorEncontrado: number = this.data().filter((element: { dni: number }) => element.dni != dni);
@@ -190,11 +204,13 @@ eliminaProfesor() {
         });      
     }
 
+    //Metodo que muestra el listado completo de los profesores.
 listadoProfesores(this: any) {
     console.log(...this.data2());
     this.menu()
 }
 
+//Metodo que genera el promedio de las notas de los alumnos.
 promedio(materias: {}) {
     const arrayNotas: Array<number> = Object.values(materias);
     const promedio = arrayNotas.reduce((valorAnterior: number, valorActual: number) => { return valorAnterior + valorActual; }, 0);
@@ -202,6 +218,7 @@ promedio(materias: {}) {
     return promedioTotal
 };
 
+//Metodo que permite la eleccion de modalidad en la carga del alumno.
 eligeModalidad() {
     const modalidad = ['Naturales', 'Sociales'];
     console.log('Seleccione la modalidad: ');
@@ -210,6 +227,7 @@ eligeModalidad() {
     if (modalidad[seleccionModalidad] === modalidad[1]) return modalidad[1];
 }
 
+//Metodo menu: Que centraliza todos los metodos de las funciones a alegir al correr el programa.
 menu(this: any) {
     const items = ['Anadir Alumno', 'Buscar Alumno', 'Eliminar Alumno', 'Listado de Alumnos', 'Anadir Profesor', 'Buscar Profesor', 'Eliminar Profesor', 'Listado de Profesores'];
     const seleccion = readlineSync.keyInSelect(items)
@@ -223,7 +241,7 @@ menu(this: any) {
     else if (items[seleccion] === items[6]) this.eliminaProfesor();
     else if (items[seleccion] === items[7]) this.listadoProfesores();
 }
-
+//Metodo que genera un numero aleatorio para matricula identificatoria de Alumno.
 matricula = Math.floor(Math.random() * 11);
 generadorMat() {
     const matricula = Math.floor(Math.random() * 10000);
