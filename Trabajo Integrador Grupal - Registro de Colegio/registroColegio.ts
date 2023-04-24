@@ -11,13 +11,11 @@ export default class RegistroColegio {
     //Constructor y metodo condicional que lee y crea (de ser necesario) el archivo JSON. Si no mantiene el existente.
     constructor() {
         if (fs.existsSync("./alumnos.json")) {
-            console.log("Archivo existente");    
-        } else {
+            } else {
             fs.writeFileSync("./alumnos.json", "utf-8");
         }
         if (fs.existsSync("./profesores.json")) {
-            console.log("Archivo existente");
-        } else {
+            } else {
             fs.writeFileSync("./profesores.json", "utf-8")
         }    
     }
@@ -174,11 +172,10 @@ buscaProfesor() {
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaProfesorXdni();    
 }
 
-
 //Metodo qye busca un profesor mediante un apellido dado por consola.
 buscaProfesorXApellido() {
     const apellido = readlineSync.question('Escriba el apellido del profesor que desea buscar: ');        
-    let nombreEncontrado = this.data().filter((element: { apellido: string }) => element.apellido === apellido);
+    let nombreEncontrado = this.data2().filter((element: { apellido: string }) => element.apellido === apellido);
     console.log(`Profesor encontrado:`, nombreEncontrado);
     this.menu();
 }
@@ -186,7 +183,7 @@ buscaProfesorXApellido() {
 //Metodo qye busca un profesor mediante un dni dado por consola.
 buscaProfesorXdni() {
     const dni = readlineSync.question('Escriba el dni del profesor que desea buscar: ');
-    let dniEncontrado = this.data().filter((element: { dni: number }) => element.dni === dni);
+    let dniEncontrado = this.data2().filter((element: { dni: number }) => element.dni === dni);
     console.log(`Profesor encontrado:`, dniEncontrado);
     this.menu();
 }

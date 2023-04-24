@@ -1,21 +1,70 @@
 [
  {
-  "nombre": "pepe",
-  "apellido": "pepon",
-  "dni": "1234",
-  "fechaNacimiento": "2345",
-  "contrato": 9854,
-  "modalidad": "Naturales"
- },
- {
-  "nombre": "pepe",
-  "apellido": "pepon",
-  "dni": "12",
-  "fechaNacimiento": "23",
-  "contrato": 9358,
+  "nombre": "Manuel",
+  "apellido": "Barraza",
+  "dni": "35910320",
+  "fechaNacimiento": "12/09/1990",
+  "contrato": 9309,
   "modalidad": "Naturales",
   "materias": [
    "Biologia"
+  ]
+ },
+ {
+  "nombre": "Marcela",
+  "apellido": "Rojas",
+  "dni": "23930320",
+  "fechaNacimiento": "23/07/1975",
+  "contrato": 3073,
+  "modalidad": "Naturales",
+  "materias": [
+   "Fisica",
+   "Quimica"
+  ]
+ },
+ {
+  "nombre": "Claudia",
+  "apellido": "Morales",
+  "dni": "32043312",
+  "fechaNacimiento": "30/04/1986",
+  "contrato": 7250,
+  "modalidad": "Naturales",
+  "materias": [
+   "Anatomia"
+  ]
+ },
+ {
+  "nombre": "Carlos",
+  "apellido": "Benitez",
+  "dni": "20347098",
+  "fechaNacimiento": "12/07/1970",
+  "contrato": 3513,
+  "modalidad": "Sociales",
+  "materias": [
+   "Sociales",
+   "Civica"
+  ]
+ },
+ {
+  "nombre": "Roberto",
+  "apellido": "Mandraccio",
+  "dni": "23987431",
+  "fechaNacimiento": "03/10/1960",
+  "contrato": 176,
+  "modalidad": "Sociales",
+  "materias": [
+   "Politica"
+  ]
+ },
+ {
+  "nombre": "Cristina",
+  "apellido": "Del Curto",
+  "dni": "35320956",
+  "fechaNacimiento": "01/02/1989",
+  "contrato": 5158,
+  "modalidad": "Sociales",
+  "materias": [
+   "Sociologia"
   ]
  }
 ]
