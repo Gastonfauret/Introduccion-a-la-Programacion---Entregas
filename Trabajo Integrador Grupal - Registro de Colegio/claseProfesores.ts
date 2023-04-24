@@ -10,8 +10,9 @@ export default class Profesor implements Personas{
     contrato: number;
     modalidad: string;    
     materias: object
+    alumnosAsignados: Array<string>;
 
-    constructor(nombre: string, apellido: string, dni: number, fechaNacimiento: string, contrato: number, modalidad: string, materias: object) {
+    constructor(nombre: string, apellido: string, dni: number, fechaNacimiento: string, contrato: number, modalidad: string, materias: object, alumnosAsignados: []) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -19,5 +20,6 @@ export default class Profesor implements Personas{
         this.contrato = contrato;
         this.modalidad = modalidad;
         this.materias = materias
+        this.alumnosAsignados = alumnosAsignados
     }    
 }

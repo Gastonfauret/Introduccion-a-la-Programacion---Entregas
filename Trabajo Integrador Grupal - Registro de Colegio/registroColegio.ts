@@ -35,7 +35,7 @@ añadeAlumno() {
     const dni = readlineSync.question('Ingrese dni del alumno: ');
     const fechaNacimiento = readlineSync.question('Ingrese fecha de nacimiento del alumno, formato DD/MM/AAAA: ');
     const matricula = Number(this.generadorMat());
-    const modalidad = String(this.eligeModalidad());
+    const modalidad = String(this.eligeModalidadAlumno());
     const materias = Object(añadeMaterias());
     const promedioFinal = this.promedio(materias);
     const profesores = añadeListadoProfesores();
@@ -130,37 +130,79 @@ añadeProfesor(this: any) {
     const dni: number = readlineSync.question('Ingrese dni del profesor: ');
     const fechaNacimiento = readlineSync.question('Ingrese fecha de nacimiento del alumno, formato DD/MM/AAAA: ');
     const contrato: number = Number(this.generadorMat());
-    const modalidad: string = String(this.eligeModalidad());
+    const modalidad: string = String(this.eligeModalidadProfesor());
     const materias: any = añadeMateriasProf();
+    const alumnosAsignadosProfesor: any = this.alumnosAsignados();
 
+    
     //Metodo que permite añadir la cantidad y la materia espesifica a cada profesor.
 function añadeMateriasProf(this: any) {
     const materiasProfesor: Array<string> = [];    
     const cantidadMaterias: number = readlineSync.question('Cuantas materias desea agregar: ');
-    for (let i = 0; i < cantidadMaterias; i++) {
-        const eligeMaterias = ['Biologia', 'Fisica', 'Quimica', 'Anatomia', 'Sociales', 'Civica', 'Politica', 'Sociologia'];
-        console.log('Seleccione las materias: ');
-        let seleccionMaterias = readlineSync.keyInSelect(eligeMaterias);
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[0]) seleccionMaterias = eligeMaterias[0];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[1]) seleccionMaterias = eligeMaterias[1];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[2]) seleccionMaterias = eligeMaterias[2];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[3]) seleccionMaterias = eligeMaterias[3];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[4]) seleccionMaterias = eligeMaterias[4];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[5]) seleccionMaterias = eligeMaterias[5];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[6]) seleccionMaterias = eligeMaterias[6];
-        if (eligeMaterias[seleccionMaterias] === eligeMaterias[7]) seleccionMaterias = eligeMaterias[7];
-        materiasProfesor.push(seleccionMaterias);
-    }
-    return materiasProfesor;
-}
+    if(modalidad === 'Naturales') {
+        for (let i = 0; i < cantidadMaterias; i++) {
+            const eligeMaterias = ['Biologia', 'Fisica', 'Quimica', 'Anatomia'];
+                console.log('Seleccione las materias: ');
+                let seleccionMaterias = readlineSync.keyInSelect(eligeMaterias);
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[0]) seleccionMaterias = eligeMaterias[0];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[1]) seleccionMaterias = eligeMaterias[1];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[2]) seleccionMaterias = eligeMaterias[2];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[3]) seleccionMaterias = eligeMaterias[3];
+                materiasProfesor.push(seleccionMaterias);
+            }
+            return materiasProfesor;
+        };
+            
+    if(modalidad === 'Sociales') {
+        for (let i = 0; i < cantidadMaterias; i++) {
+            const eligeMaterias = ['Sociales', 'Civica', 'Politica', 'Sociologia'];
+                console.log('Seleccione las materias: ');
+                let seleccionMaterias = readlineSync.keyInSelect(eligeMaterias);
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[0]) seleccionMaterias = eligeMaterias[0];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[1]) seleccionMaterias = eligeMaterias[1];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[2]) seleccionMaterias = eligeMaterias[2];
+                if (eligeMaterias[seleccionMaterias] === eligeMaterias[3]) seleccionMaterias = eligeMaterias[3];
+                materiasProfesor.push(seleccionMaterias);
+            }            
+            return materiasProfesor;
+        }        
+    }    
 
-    const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, modalidad, materias);
+   const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, modalidad, materias, alumnosAsignadosProfesor);
 
     let profesores = [...this.data2(), profesor]
     fs.writeFileSync('./profesores.json', JSON.stringify(profesores, null, 1));
     console.log(`Profesor añadido con Exito.`, profesor);
     this.menu();
 }
+
+// alumnosAsignados(this: any) {
+//     if(this.modalidad === 'Naturales') return this.asignaAlumnosAProfeNaturales();
+//     if(this.modalidad === 'Sociales') return this.asignaAlumnosAProfeSociales();
+// }; 
+
+// asignaAlumnosAProfeNaturales(this: any) {
+//     let alumnoAsignado: Array<string> = [];
+//     for(let i = 0; i <= this.data().length; i++) {
+//         if (this.data()[i].modalidad === 'Naturales'){
+//             const datoAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
+//         alumnoAsignado.push(datoAlumno);             
+//         }                 
+//     }  
+//     return alumnoAsignado;      
+// };
+
+// asignaAlumnosAProfeSociales(this: any) {
+//     let alumnoAsignado: Array<string> = [];
+//     for(let i = 0; i <= this.data().length; i++) {
+//         if (this.data()[i].modalidad === 'Sociales'){
+//             const datoAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
+//         alumnoAsignado.push(datoAlumno);             
+//         }                 
+//     }  
+//     return alumnoAsignado;      
+// }; 
+
 
 //Metodo de busqueda de profesores, mediante las modalidades elegidas: dni o apellido.
 buscaProfesor() {
@@ -172,7 +214,7 @@ buscaProfesor() {
     if (datosDeBusqueda[seleccionDeDatos] === datosDeBusqueda[1]) return this.buscaProfesorXdni();    
 }
 
-//Metodo qye busca un profesor mediante un apellido dado por consola.
+//Metodo que busca un profesor mediante un apellido dado por consola.
 buscaProfesorXApellido() {
     const apellido = readlineSync.question('Escriba el apellido del profesor que desea buscar: ');        
     let nombreEncontrado = this.data2().filter((element: { apellido: string }) => element.apellido === apellido);
@@ -216,7 +258,15 @@ promedio(materias: {}) {
 };
 
 //Metodo que permite la eleccion de modalidad en la carga del alumno.
-eligeModalidad() {
+eligeModalidadAlumno() {
+    const modalidad = ['Naturales', 'Sociales'];
+    console.log('Seleccione la modalidad: ');
+    const seleccionModalidad = readlineSync.keyInSelect(modalidad);
+    if (modalidad[seleccionModalidad] === modalidad[0]) return modalidad[0];
+    if (modalidad[seleccionModalidad] === modalidad[1]) return modalidad[1];
+}
+
+eligeModalidadProfesor() {
     const modalidad = ['Naturales', 'Sociales'];
     console.log('Seleccione la modalidad: ');
     const seleccionModalidad = readlineSync.keyInSelect(modalidad);
