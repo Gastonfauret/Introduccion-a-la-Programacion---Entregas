@@ -1,4 +1,5 @@
 //Importacion de las clases.
+import { Console } from "console";
 import Alumnos from "./claseAlumnos";
 import Profesor from "./claseProfesores";
 
@@ -132,8 +133,8 @@ añadeProfesor(this: any) {
     const contrato: number = Number(this.generadorMat());
     const modalidad: string = String(this.eligeModalidadProfesor());
     const materias: any = añadeMateriasProf();
-    const alumnosAsignadosProfesor: any = this.alumnosAsignados();
-
+    const alumnosAsignadosProfesor: any = this.asignaAlumnosAprofeSociales();
+        
     
     //Metodo que permite añadir la cantidad y la materia espesifica a cada profesor.
 function añadeMateriasProf(this: any) {
@@ -166,9 +167,9 @@ function añadeMateriasProf(this: any) {
             }            
             return materiasProfesor;
         }        
-    }    
-
-   const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, modalidad, materias, alumnosAsignadosProfesor);
+    } 
+    
+    const profesor: Profesor = new Profesor(nombre, apellido, dni, fechaNacimiento, contrato, modalidad, materias, alumnosAsignadosProfesor);
 
     let profesores = [...this.data2(), profesor]
     fs.writeFileSync('./profesores.json', JSON.stringify(profesores, null, 1));
@@ -177,34 +178,36 @@ function añadeMateriasProf(this: any) {
 }
 
 // alumnosAsignados(this: any) {
-//     if(this.modalidad === 'Naturales') return this.asignaAlumnosAProfeNaturales();
-//     if(this.modalidad === 'Sociales') return this.asignaAlumnosAProfeSociales();
+//     if(this.modalidad === 'Naturales') return this.asignaAlumnosAprofeNaturales();
+//     if(this.modalidad === 'Sociales') return this.asignaAlumnosAprofeSociales();
 // }; 
 
-// asignaAlumnosAProfeNaturales(this: any) {
-//     let alumnoAsignado: Array<string> = [];
-//     for(let i = 0; i <= this.data().length; i++) {
-//         if (this.data()[i].modalidad === 'Naturales'){
-//             const datoAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
-//         alumnoAsignado.push(datoAlumno);             
-//         }                 
-//     }  
-//     return alumnoAsignado;      
-// };
+//Metodo que asigna los alumnos al profesor, de la modalidad Naturales.
+asignaAlumnosAprofeNaturales(this: any) {
+    let i: number;
+    const arrayDeNombres: Array<string> = [];
+    for (i = 0; i < this.data().length; i++) {
+        if (this.data()[i].modalidad === 'Naturales') {
+            const nombreAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
+            arrayDeNombres.push(nombreAlumno);
+        }    
+    }
+    return arrayDeNombres;
+};
 
-// asignaAlumnosAProfeSociales(this: any) {
-//     let alumnoAsignado: Array<string> = [];
-//     for(let i = 0; i <= this.data().length; i++) {
-//         if (this.data()[i].modalidad === 'Sociales'){
-//             const datoAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
-//         alumnoAsignado.push(datoAlumno);             
-//         }                 
-//     }  
-//     return alumnoAsignado;      
-// }; 
-
-
-//Metodo de busqueda de profesores, mediante las modalidades elegidas: dni o apellido.
+//Metodo que asigna los alumnos al profesor, de la modalidad Naturales.
+asignaAlumnosAprofeSociales(this: any) {
+    let i: number;
+    const arrayDeNombres: Array<string> = [];
+    for (i = 0; i < this.data().length; i++) {
+        if (this.data()[i].modalidad === 'Sociales') {
+            const nombreAlumno: string = `${this.data()[i].nombre} ${this.data()[i].apellido}`;
+            arrayDeNombres.push(nombreAlumno);
+        }    
+    }
+    return arrayDeNombres;
+};
+    
 buscaProfesor() {
     console.log('Seleccione el Tipo de dato que desea buscar: ');
     const datosDeBusqueda: Array<string> = ['Apellido', 'Dni'];
@@ -266,6 +269,7 @@ eligeModalidadAlumno() {
     if (modalidad[seleccionModalidad] === modalidad[1]) return modalidad[1];
 }
 
+//Metodo de Eleccion de Modalidad en Clase Profesor.
 eligeModalidadProfesor() {
     const modalidad = ['Naturales', 'Sociales'];
     console.log('Seleccione la modalidad: ');
