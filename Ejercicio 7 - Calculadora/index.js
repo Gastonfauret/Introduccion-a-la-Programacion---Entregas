@@ -12,6 +12,49 @@ function borrar() {
 //Funcion Igual que Resuelve la operacion matematica y lo grafica en pantalla.
 function igual() {
     numUno.value = numDos.value;
-    const result = eval(numDos.value);
-    numDos.value = result;
+    if (numDos.value.includes('+') === true) {
+        const valor = numDos.value.split('+');
+        const num1 = Number(valor[0]);
+        const num2 = Number(valor[1]);
+        const result = operacion(num1, num2, suma);
+        numDos.value = result;        
+    } else if (numDos.value.includes('-') === true) {
+        const valor = numDos.value.split('-');
+        const num1 = Number(valor[0]);
+        const num2 = Number(valor[1]);
+        const result = operacion(num1, num2, resta);
+        numDos.value = result;
+    } else if (numDos.value.includes('/') === true) {
+        const valor = numDos.value.split('/');
+        const num1 = Number(valor[0]);
+        const num2 = Number(valor[1]);
+        const result = operacion(num1, num2, division);
+        numDos.value = result;
+    } else if (numDos.value.includes('*') === true) {
+        const valor = numDos.value.split('*');
+        const num1 = Number(valor[0]);
+        const num2 = Number(valor[1]);
+        const result = operacion(num1, num2, multiplicacion);
+        numDos.value = result;
+    }
+};
+
+function suma(a, b) {
+    return a + b;
+};
+
+function resta(a, b) {
+    return a - b;
+};
+
+function division(a, b) {
+    return a / b;
+};
+
+function multiplicacion(a, b) {
+    return a * b;
+};
+
+function operacion(a, b, callback) {
+    return callback(a, b);
 };
