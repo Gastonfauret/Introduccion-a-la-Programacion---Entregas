@@ -1,0 +1,110 @@
+body {
+    display: flex;
+    text-align: center;
+    place-content: center;
+    place-items: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0ffff;
+}
+
+.btn-other-style {
+    width: 7em;
+    height: 3em;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 15px;
+    background-color: #def9e5;
+    color: #56635a;
+    border: 0px;
+    box-shadow: 3px 3px 3px #adc6b4;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px; 
+    border-radius: 10px; 
+}
+
+dialog:modal {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    border-radius: 10px;
+    border-color: #cfffca;
+    box-shadow: 3px 3px 3px #a2a0a1;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.input-style {
+    border: none;
+    background-color: #cfffca;
+    border-radius: 3px;
+}
+
+#name, #lastName  {
+    width: 230px;
+}
+
+#id {
+    width: 263px;
+}
+
+#gender {
+    width: 234px;
+}
+
+#address {
+    width: 222px;
+}
+
+#city {
+    width: 234px;
+}
+
+#email {
+    width: 174px;
+}
+
+#phone {
+    width: 226px;
+}
+
+.btn-style {
+    width: 5em;
+    margin: 7px;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#btn-data {
+    display: flex;
+    gap: 60px;
+}
+
+.table-container {
+    margin-top: 30px;
+    display: flex;
+    width: 700px;
+    place-content: center;
+}
+
+#titles-table {
+    background-color: #a5eea0;
+}
+
+#search {
+    margin-top: 40px;
+    width: 30em;
+}
+
+.error-container {
+    width: 100%;
+    height: 1000px;
+    background-color: #a5eea0;
+    place-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./funcionalidades.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>API REST</h1>
+        <p>
+            Práctica de consumo de recursos a través de endpoints. Métodos GET,
+            POST, PUT y DELETE.
+        </p>
+        <p>
+            Utilizamos el backend de prueba de
+            <a href="https://mockapi.io" target="_blank">MockAPI</a>
+        </p>
+    </header>
+
+    <div id="btn-data">
+        <button class="btn-other-style" id="open-modal-add">Add</button>
+
+        <button class="btn-other-style" id="open-modal-modify">Modify</button>
+
+        <button class="btn-other-style" id="open-modal-del">Delete</button>
+
+        <button class="btn-other-style" id="update">Update</button>
+    </div>
+    
+    <!-- <input type="search" id="search" placeholder="Busqueda"> -->
+
+<!----------- Modal donde Añade usuarios -------------->
+
+    <dialog id="modal-add">
+        <form action="" method="dialog" id="form">
+
+            <label for="id">Id
+                <input class="input-style" type="text" id="id" name="id"/>
+            </label>                
+            <label for="name">Nombre
+                <input class="input-style" type="text" id="name" name="name" required/>
+            </label>
+            <label for="lastName">Apellido
+                <input class="input-style" type="text" id="lastName" name="lastName" required/>
+            </label>
+            <label for="birth">Fecha de Nacimiento
+                <input class="input-style" type="text" id="birth" name="birth" required/>
+            </label>
+            <label for="gender">Genero
+                <input class="input-style" type="text" id="gender" name="gender" required/>
+            </label>
+            <label for="address">Domicilio
+                <input class="input-style" type="text" id="address" name="address" required/>
+            </label>
+            <label for="city">Ciudad
+                <input class="input-style" type="text" id="city" name="city" required/>
+            </label>
+            <label for="email">Correo Electrónico
+                <input class="input-style" type="email" id="email" name="email" required/>
+            </label>
+            <label for="phone">Teléfono
+                <input class="input-style" type="tel" id="phone" name="phone" 
+                pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$" />
+            </label>
+
+            <div class="btn-div">
+                <input class="btn-style" id="btn-submit-add" type="submit" value="Aceptar" />
+                <input class="btn-style" id="btn-clean-add" type="reset" value="Limpiar" />
+                <input class="btn-style" type="button" value="Cancelar" id="close-modal-add" />
+            </div>
+            
+        </form>
+    </dialog>
+
+<!----------------------------------------------------->
+
+<!----------- Modal donde Modifica usuarios ----------->
+
+<dialog id="modal-modify">
+    <form action="" method="dialog" id="form">
+
+        <label for="id">Id
+            <input class="input-style" type="number" id="id-modify" name="id"/>
+        </label>
+
+        <label for="name">Nombre
+            <input class="input-style" type="text" id="name-modify" name="name"/>
+        </label>
+
+        <label for="lastName">Apellido
+            <input class="input-style" type="text" id="lastName-modify" name="lastName"/>
+        </label>
+        <label for="gender">Genero
+            <input class="input-style" type="text" id="gender-modify" name="gender"/>
+        </label>
+        <label for="city">Ciudad
+            <input class="input-style" type="text" id="city-modify" name="city"/>
+        </label>        
+
+        <div class="btn-div">
+            <input class="btn-style" id="btn-submit-modify" type="submit" value="Aceptar" />
+            <input class="btn-style" id="btn-clean-modify" type="reset" value="Limpiar" />
+            <input class="btn-style" type="button" value="Cancelar" id="close-modal-modify" />
+        </div>
+        
+    </form>
+</dialog>
+<!----------------------------------------------------->
+
+<!----------- Modal donde Elimina usuarios ----------->
+
+<dialog id="modal-del">
+    <form action="" method="dialog" id="form">
+
+        <label for="id">Id
+            <input class="input-style" type="number" id="id-del" name="id" required/>
+        </label>       
+
+        <div class="btn-div">
+            <input class="btn-style" id="btn-submit-del" type="submit" value="Aceptar" />
+            <input class="btn-style" id="btn-clean-del" type="reset" value="Limpiar" />
+            <input class="btn-style" type="button" value="Cancelar" id="close-modal-del" />
+        </div>
+        
+    </form>
+</dialog>
+
+<!----------------------------------------------------->
+    <div class="table-container">
+        <table class="table" cellspacing="30">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+            </tbody>
+        </table>
+    </div>   
+
+</body>
+
+</html>
